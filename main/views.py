@@ -20,6 +20,13 @@ def get_base_context(request, pagename):
 
 def index_page(request):
     context = get_base_context(request, 'PythonBin')
+    if request.method == 'POST':
+        try:
+            page = request.POST.get("page")
+            return redirect('view_snippet', id=page)
+        except:
+            raise Http404
+
     return render(request, 'pages/index.html', context)
 
 

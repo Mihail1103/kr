@@ -2,6 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\main",
+    "\\main\\templates",
+    "\\main\\templates\\pages",
     "\\prom_sem_kr"
   ],
   "SelectedNode": "\\main\\views.py",
