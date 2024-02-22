@@ -1,0 +1,14 @@
+The messages framework
+Управление сообщениями для пользователей веб-приложений.
+Документация: https://docs.djangoproject.com/en/5.0/ref/contrib/messages/
+
+1) from django.contrib import messages
+   messages.add_message(request, messages.INFO, "Hello world.")
+2) {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+ 
