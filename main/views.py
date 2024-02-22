@@ -36,11 +36,19 @@ def add_snippet_page(request):
     if request.method == 'POST':
         addform = AddSnippetForm(request.POST)
         if addform.is_valid():
-            record = Snippet(
-                name=addform.data['name'],
-                code=addform.data['code'],
-                creation_date=datetime.datetime.now(),
-            )
+            if(request.user.is_authenticated):
+                record = Snippet(
+                    user=request.user,
+                    name=addform.data['name'],
+                    code=addform.data['code'],
+                    creation_date=datetime.datetime.now(),
+                )
+            else:
+                record = Snippet(
+                    name=addform.data['name'],
+                    code=addform.data['code'],
+                    creation_date=datetime.datetime.now(),
+                )
             record.save()
             id = record.id
             messages.add_message(request, messages.SUCCESS, "Сниппет успешно добавлен")
