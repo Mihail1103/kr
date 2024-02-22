@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import datetime
 
 from django.contrib import messages
@@ -20,7 +21,7 @@ def get_base_context(request, pagename):
 
 def index_page(request):
     context = get_base_context(request, 'PythonBin')
-    if request.method == 'POST':
+    if (request.method == 'POST'):
         try:
             page = request.POST.get("page")
             return redirect('view_snippet', id=page)
@@ -115,4 +116,12 @@ def logout_page(request):
 
 
 def my_snippets_page(request):
-    raise NotImplementedError
+    if(request.user.is_authenticated):
+        context = get_base_context(request, 'Мои сниппеты')
+        data = Snippet.objects.filter(user = request.user)
+        tmps:list = []
+        for i in data:
+            tmps.append([i.id, i.name, i.creation_date])
+        context["pipka"] = tmps
+        return render(request, 'pages/my_snippets.html', context)
+    return redirect('index')

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block pagename %}
+<div class="row">
+    <div class="col text-left">
+        <h1>{{pagename}}</h1><hr>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <title>Таблица</title>
+    <style>
+        table {
+            width: 100%; /* Ширина таблицы */
+            border-collapse: collapse; /* Убираем двойные линии */
+        }
+
+        thead {
+            background: #212529; /* Цвет фона заголовка */
+            color: white
+        }
+
+        td, th {
+            padding: 10px; /* Поля в ячейках */
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f0f0f0; /* Зебра */
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="1">ID</th>
+                <th colspan="1">Название</th>
+                <th colspan="1">Дата создания</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for i, i1, i2 in pipka%}
+            <tr>
+                <td>{{i}}</td>
+                <td>{{i1}}</td>
+                <td>{{i2}}</td>
+            </tr>
+            {%endfor%}
+            
+        </tbody>
+    </table>
+</body>
+{% endblock %}
+
